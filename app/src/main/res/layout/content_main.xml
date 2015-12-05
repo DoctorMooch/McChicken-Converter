@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="USD($):"
+                android:text="@string/input_money_prompt"
                 android:id="@+id/USD_label" />
 
             <EditText
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="McChickens:"
+                android:text="@string/mcchicken_result"
                 android:id="@+id/textView2"
                 android:layout_gravity="center_horizontal" />
 

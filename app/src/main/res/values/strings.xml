@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="main_activity_heading">USD($) to McChicken Converter</string>
     <string name="convert_button">Convert</string>
+    <string name="input_money_prompt">USD($):</string>
+    <string name="mcchicken_result">McChickens:</string>
 </resources>
