@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     double price;
     Button convert;
     TextView result;
-    EditText inPrice;
+    EditText inPrice, taxField;
+    CheckBox taxCheckbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         convert = (Button) findViewById(R.id.convert_button);
         result = (TextView) findViewById(R.id.result_field);
         inPrice = (EditText) findViewById(R.id.dollar_ammount);
+        taxCheckbox = (CheckBox) findViewById(R.id.taxCheckbox);
+        taxField = (EditText) findViewById(R.id.taxField);
 
         convert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,9 +78,24 @@ public class MainActivity extends AppCompatActivity {
 
     public String convertToMcChicken(double price) {
         DecimalFormat df = new DecimalFormat("#.####");
+        DecimalFormat taxFormat = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
         df.setRoundingMode(RoundingMode.CEILING);
         double costOfItem = price;
-        double chickenAmmt = costOfItem / 1.07; //***STATIC TAX RATE FOR NC, ADD SUPPORT FOR OTHER STATES***
+        double taxrate, totTax;
+        double chickenAmmt = 0;
+        taxrate = Double.parseDouble(taxField.getText().toString());
+        totTax = Double.parseDouble(taxFormat.format(.99 * taxrate));
+        //Check if box is checked
+        //If so, factor in tax.
+        //If not, exclude tax
+        if(taxCheckbox.isChecked()) {
+            System.out.println(totTax);
+            chickenAmmt = costOfItem / (1+totTax); //***STATIC TAX RATE FOR NC, ADD SUPPORT FOR OTHER STATES***
+        }else{
+            chickenAmmt = costOfItem / .99;
+        }
+        //Return McChickens
         return df.format(chickenAmmt);
     }
 }

@@ -6,4 +6,5 @@
     <string name="input_money_prompt">USD($):</string>
     <string name="mcchicken_result">McChickens:</string>
     <string name="title_activity_settings_menu">SettingsMenu</string>
+    <string name="tax_checkbox">Calculate Tax</string>
 </resources>
